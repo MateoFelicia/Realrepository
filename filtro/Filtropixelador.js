@@ -10,3 +10,7 @@ function setup(){
 
     for (let pixelX = 0; pixelX < ancho; pixelX ++){
         for (let pixelY = 0; pixelY < largo; pixelY ++){
+
+        }
+    }
+}

@@ -1,0 +1,18 @@
+let lista = [[[2, 7, 6],
+              [9, 5, 1],
+              [4, 3, 8]]]
+let aux = 0;
+
+function MagicSquare(lista) {
+    for (i = 0; i < lista.length; i++) {
+        for (j = 0; j < lista.length; j++) {
+            if(i == 0){
+                acum =+ lista[i][j]
+            }
+            let Ayuda = aux ? "Sí" : "No";
+        }
+    }
+}
+//Hacerlo de a niveles, primero todo horizontal, vertical, y diagonal
+MagicSquare(lista)
+
