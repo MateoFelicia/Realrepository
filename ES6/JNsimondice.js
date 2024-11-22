@@ -1,19 +1,3 @@
-let sprRoj;
-let sprAma;
-let sprAzu;
-let sprVer;
-let boton;
-
-let iniciar;
-let nroRandom = [];
-let secuencia = [0, 0];
-let patronJ = [];
-let isPlayingSequence = false;
-let largo = 4;
-let largo_verificacion = 4;
-let verificacion = true;
-let posicion = 0;
-
 function setup() {
     createCanvas(800, 600);
     background(50);
@@ -22,14 +6,9 @@ function setup() {
     fill('cyan');
     text('Tote says', 0, 100);
 
-    boton = createButton('Iniciar'); //boton para empezar
-    boton.position(350, 500);
+    //boton = createButton('Iniciar'); //boton para empezar
+    //boton.position(350, 500);
 
-    cuadrados;
-    control;
-    jugadas;
-}
-function cuadrados() {
     sprRoj = createSprite(300, 250,
         100, 100,);
     sprRoj.shapeColor = color(200, 0, 0);
@@ -40,7 +19,7 @@ function cuadrados() {
     }
     sprRoj.onMouseReleased = function () {
         sprRoj.shapeColor = color(200, 0, 0);
-        jugadas();
+        control();
     }
 
     sprAma = createSprite(300, 350,
@@ -53,7 +32,7 @@ function cuadrados() {
     }
     sprAma.onMouseReleased = function () {
         sprAma.shapeColor = color(200, 200, 0);
-        jugadas();
+        control();
     }
 
 
@@ -67,7 +46,7 @@ function cuadrados() {
     }
     sprAzu.onMouseReleased = function () {
         sprAzu.shapeColor = color(0, 0, 200);
-        jugadas();
+        control();
     }
 
     sprVer = createSprite(400, 250,
@@ -80,33 +59,71 @@ function cuadrados() {
     }
     sprVer.onMouseReleased = function () {
         sprVer.shapeColor = color(0, 200, 0);
-        jugadas();
+        control();
     }
+    //cuadrados;
+    control;
+    //jugadas;
 }
-    //if (isPlayingSequence = false) {
-
-   // }
-
-    //let jugando = true;
-
-    //while (jugando){
-        //logica();
-    //}
-
-
-
 
 function draw() {
     drawSprites();
     
 
 }
-//Las teclas se iluminan aleatoriamente y el jugador debe reproducir la secuencia 
-//de luz sin cometer un error.
-function control() {
-    isPlayingSequence = true;
 
-    boton.remove();
+Rojo = () => {
+    sprRoj.shapeColor = color(255, 0, 0);
+}
+
+Amarillo = () => {
+    sprAma.shapeColor = color(255, 255, 0);
+}
+
+Azul = () => {
+    sprAzu.shapeColor = color(0, 0, 255);
+}
+
+Verde = () => {
+    sprVer.shapeColor = color(0, 255, 0);
+}
+
+aburrido = () => {
+    sprRoj.shapeColor = color(200, 0, 0);
+    sprVer.shapeColor = color(0, 200, 0);
+    sprAma.shapeColor = color(200, 200, 0);
+    sprAzu.shapeColor = color(0, 0, 200);
+}
+
+
+function control() {
+    console.log("controlado bro");
+
+    if (patronJ.length === secuencia.length) { //si la secuencia del jugador y de la maquina son igual de largas
+        if (patronJ === secuencia) { //si lo que puso el jugador == secuencia del bot
+            console.log("¡Bien!");
+            patronJ = []; //se reinicia el patrón del jugador
+            largo = 0;
+            let color_nuevo = floor(random(0, 4)); //se elige un color aleatorio
+            secuencia.push(color_nuevo); //se pushea a la secuencia de la maquina
+        }
+    } 
+
+if (patronJ.length < secuencia.length){ //si la secuencia del jugador no terminó
+    for (let x = 0; x < secuencia.lenght; x++) { //comparacion uno por uno
+        console.log('Entro en el for'); //avisa
+        if (secuencia[x] != patronJ[x]) { //y si, comparando cada posicion, hay un error 
+            alert("¡MALA memoria!");
+        }
+    }
+}
+}
+
+function logica() {
+    //isPlayingSequence == true;
+    console.log("logico bro");
+    
+    //boton.remove();
 
     nroRandom = random(0, 4);//es un n0 random entre 0 y 3 
     nroRandom = floor(nroRandom);
@@ -139,7 +156,7 @@ function control() {
     }
 
     setTimeout(() => {
-        isPlayingSequence = false; 
+        isPlayingSequence == false; 
         console.log('Lolo tiempo');
         
     }, secuencia.length * 2000 + 1000);  // Calcula el tiempo total de la secuencia
@@ -149,55 +166,15 @@ function control() {
 
 }
 
-function jugadas() {
-
-//    for (x = 0; x <= secuencia.lenght; x++) { 
-//        console.log('Entro en el for');
-//        if (secuencia[x] != patronJ[x]) {
-//            alert("¡MALA memoria!");
-//        }
-//    }
-    if (patronJ.length === secuencia.length) {
-            if (patronJ === secuencia) {
-                console.log("¡Bien!");
-                patronJ = [];
-                largo = 0;
-                let color_nuevo = floor(random(0, 4));
-                secuencia.push(color_nuevo);
-            }
-        } 
-    if (patronJ.length < secuencia.length){
-        for (let x = 0; x < secuencia.lenght; x++) { //comparacion uno por uno
-            console.log('Entro en el for');
-            if (secuencia[x] != patronJ[x]) {
-                alert("¡MALA memoria!");
-            }
-        }
-    }
-
-    }
 
 
+let patronJ = [];
+let secuencia = [];
+let largo = patronJ.length;
+let isPlayingSequence = true;
 
-Rojo = () => {
-    sprRoj.shapeColor = color(255, 0, 0);
+if (isPlayingSequence == true) {
+    logica;
 }
-
-Amarillo = () => {
-    sprAma.shapeColor = color(255, 255, 0);
-}
-
-Azul = () => {
-    sprAzu.shapeColor = color(0, 0, 255);
-}
-
-Verde = () => {
-    sprVer.shapeColor = color(0, 255, 0);
-}
-
-aburrido = () => {
-    sprRoj.shapeColor = color(200, 0, 0);
-    sprVer.shapeColor = color(0, 200, 0);
-    sprAma.shapeColor = color(200, 200, 0);
-    sprAzu.shapeColor = color(0, 0, 200);
-}
+//logica;
+control;
